@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <form #clienteForm="ngForm" (ngSubmit)="postCliente(clienteForm)">
+        <input type="hidden" class="form-control mt-2" name="_id" #_id="ngModel" [(ngModel)]="getService().selectedCliente._id" placeholder="_id" />
+        <input type="text" class="form-control mt-2" name="name" #name="ngModel" [(ngModel)]="getService().selectedCliente.name" placeholder="Nome" required minlength="4" />
+        <input type="email" class="form-control mt-2" name="email" #email="ngModel" [(ngModel)]="getService().selectedCliente.email" placeholder="E-mail" required />
+        <input type="tel" class="form-control mt-2" name="tel" #tel="ngModel" [(ngModel)]="getService().selectedCliente.tel" placeholder="Telefone" required />
+        <input type="number" class="form-control mt-2" name="cpf" #cpf="ngModel" [(ngModel)]="getService().selectedCliente.cpf" placeholder="CPF" required />
+        <button type="submit" class="btn btn-block btn-primary mt-2">Salvar</button>
+      </form>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <table class="table">
+        <thead>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>CPF</th>
+          <th>Editar</th>
+          <th>Deletar</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of getService().clientes">
+            <td>{{ cliente.name }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.tel }}</td>
+            <td>{{ cliente.cpf }}</td>
+            <td><button (click)="editCliente(cliente)" class="btn btn-block btn-primary">Editar</button></td>
+            <td><button (click)="deleteCliente(cliente._id)" class="btn btn-block btn-danger">Deletar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
